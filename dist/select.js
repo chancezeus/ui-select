@@ -1,7 +1,7 @@
 /*!
  * ui-select
  * http://github.com/angular-ui/ui-select
- * Version: 0.19.6 - 2016-10-27T14:40:34.037Z
+ * Version: 0.19.6 - 2016-10-27T14:48:12.463Z
  * License: MIT
  */
 
@@ -85,13 +85,14 @@ if (angular.element.prototype.querySelectorAll === undefined) {
 if (angular.element.prototype.closest === undefined) {
   angular.element.prototype.closest = function( selector) {
     var elem = this[0];
-    var matchesSelector = elem.matches || elem.webkitMatchesSelector || elem.mozMatchesSelector || elem.msMatchesSelector;
+    var matchesSelector = elem.matches || elem.matchesSelector || elem.webkitMatches || elem.webkitMatchesSelector ||
+      elem.msMatches || elem.msMatchesSelector || elem.mozMatches || elem.mozMatchesSelector;
 
     while (elem) {
       if (matchesSelector.bind(elem)(selector)) {
-        return elem;
+        return angular.element(elem);
       } else {
-        elem = angular.element(elem.parentElement);
+        elem = elem.parentElement;
       }
     }
     return angular.element();
