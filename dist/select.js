@@ -1,7 +1,7 @@
 /*!
  * ui-select
  * http://github.com/angular-ui/ui-select
- * Version: 0.19.5 - 2016-10-24T23:13:59.434Z
+ * Version: 0.19.6 - 2016-10-27T14:40:34.037Z
  * License: MIT
  */
 
@@ -91,10 +91,10 @@ if (angular.element.prototype.closest === undefined) {
       if (matchesSelector.bind(elem)(selector)) {
         return elem;
       } else {
-        elem = elem.parentElement;
+        elem = angular.element(elem.parentElement);
       }
     }
-    return false;
+    return angular.element();
   };
 }
 
@@ -706,7 +706,7 @@ uis.controller('uiSelectCtrl',
             ctrl.close(skipFocusser);
             return;
           }
-        }        
+        }
         _resetSearchInput();
         $scope.$broadcast('uis:select', item);
 
@@ -782,7 +782,7 @@ uis.controller('uiSelectCtrl',
         }
 
       if (!isLocked && lockedItemIndex > -1) {
-        lockedItems.splice(lockedItemIndex, 0);
+        lockedItems.splice(lockedItemIndex, 1);
       }
     }
 

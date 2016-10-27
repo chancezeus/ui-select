@@ -81,10 +81,10 @@ if (angular.element.prototype.closest === undefined) {
       if (matchesSelector.bind(elem)(selector)) {
         return elem;
       } else {
-        elem = elem.parentElement;
+        elem = angular.element(elem.parentElement);
       }
     }
-    return false;
+    return angular.element();
   };
 }
 
